@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Print</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .ticket-info {
+            margin-top: 30px;
+        }
+        .ticket-info p {
+            font-size: 18px;
+        }
+        .ticket-info strong {
+            font-weight: bold;
+        }
+        /* Make the print view cleaner */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                text-align: left;
+            }
+            .ticket-info {
+                text-align: left;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Ticket Print</h1>
+    <div class="ticket-info">
+        <p><strong>Ticket ID:</strong> {{ ticket.id }}</p>
+        <p><strong>Bus:</strong> {{ ticket.bus.name }}</p>
+        <p><strong>Customer:</strong> {{ ticket.customer.username }}</p>
+        <p><strong>Departure Time:</strong> {{ ticket.bus.departure_time }}</p>
+        <p><strong>Seats Booked:</strong> {{ ticket.seats }}</p>
+    </div>
+
+    <button class="no-print" onclick="window.print()">Print Ticket</button>
+</body>
+</html>

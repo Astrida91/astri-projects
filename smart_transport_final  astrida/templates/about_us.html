@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us - Smart Transport{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="jumbotron text-center text-white" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{% static 'images/about-banner.jpg' %}') no-repeat center center; background-size: cover; height: 50vh;">
+    <h1 class="display-4">About Us</h1>
+    <p class="lead">Discover what makes Smart Transport the leading choice in modern transportation solutions.</p>
+</div>
+
+<!-- Content Section -->
+<div class="container py-5">
+    <!-- Mission, Vision, Values -->
+    <div class="row text-center">
+        <div class="col-md-4">
+            <i class="fas fa-bullseye fa-3x text-primary mb-3"></i>
+            <h3>Our Mission</h3>
+            <p>To make transportation convenient, accessible, and affordable through technology and smart systems.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="fas fa-eye fa-3x text-success mb-3"></i>
+            <h3>Our Vision</h3>
+            <p>To lead the industry by offering unparalleled customer experiences and operational efficiency.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+            <h3>Our Values</h3>
+            <p>Innovation, Reliability, and Customer-Centric Service.</p>
+        </div>
+    </div>
+</div>
+
+<!-- About Section with Image -->
+<div class="container py-5">
+    <div class="row align-items-center">
+        <!-- Text Column -->
+        <div class="col-md-6">
+            <h2 style="color: orangered;">Who We Are</h2>
+            <p>Smart Transport is a modern transportation solution designed to improve the efficiency and reliability of public transit systems. Our technology-driven approach ensures seamless travel experiences for individuals and communities.</p>
+            <p>We strive to connect people with smart, affordable, and eco-friendly transportation options, making public transport more accessible to everyone.</p>
+            <a href="{% url 'contact' %}" class="btn btn-lg mt-3" style="background-color: orangered; color: white; border: none;">Contact Us</a>
+        </div>
+        <!-- Image Column -->
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images/smart-transport.jpeg' %}" alt="Smart Transport Team" class="img-fluid rounded shadow" style="max-width: 100%; height: auto; border: 5px solid orangered;">
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="bg-light py-5 text-center">
+    <h2>Join Our Community</h2>
+    <p>Be a part of the Smart Transport movement and enjoy seamless travel every day.</p>
+    <a href="{% url 'accounts:register' %}" class="btn btn-success btn-lg">Get Started</a>
+</div>
+{% endblock %}

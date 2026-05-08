@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment and Confirmation{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center text-primary mb-4">Mobile Payment & Confirmation</h1>
+
+    <!-- Payment Form -->
+    <div class="card shadow-lg mx-auto" style="max-width: 600px; border-radius: 10px;">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-4">Choose Your Payment Method</h4>
+            <form id="paymentForm" onsubmit="return handlePayment(event);">
+                <!-- Payment Method -->
+                <div class="mb-3">
+                    <label for="paymentMethod" class="form-label">Select Payment Method</label>
+                    <select id="paymentMethod" class="form-select" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="airtel-money">Airtel Money</option>
+                        <option value="mtn-money">MTN Money</option>
+                        <option value="zamtel-money">Zamtel Mobile Money</option>
+                        <option value="fnb">FNB Bank</option>
+                        <option value="zanaco">Zanaco Bank</option>
+                    </select>
+                </div>
+
+                <!-- Phone Number or Account Number -->
+                <div class="mb-3">
+                    <label for="accountNumber" class="form-label">Enter Phone or Account Number</label>
+                    <input type="text" id="accountNumber" class="form-control" required placeholder="Enter your number">
+                </div>
+
+                <!-- Amount (User can input their own amount) -->
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="number" id="amount" class="form-control" required placeholder="Enter amount" min="1">
+                </div>
+
+                <!-- Pay Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Pay & Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Section -->
+    <div id="confirmationMessage" class="text-center mt-5 d-none">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Payment Successful!</h4>
+            <p>Your ticket has been confirmed.</p>
+            <hr>
+            <p class="mb-0"><strong>Ticket ID:</strong> {{ ticket.id }}</p>
+            <p><strong>Bus:</strong> {{ ticket.bus.name }}</p>
+            <p><strong>Seats Booked:</strong> {{ ticket.seats }}</p>
+            <p><strong>Payment Method:</strong> <span id="selectedMethod"></span></p>
+            <p><strong>Amount Paid:</strong> K <span id="paymentAmount"></span></p>
+        </div>
+        <button class="btn btn-secondary btn-lg" onclick="window.print()">Print Ticket</button>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    function handlePayment(event) {
+        event.preventDefault();
+
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        const accountNumber = document.getElementById('accountNumber').value;
+        const amount = document.getElementById('amount').value;
+
+        if (!paymentMethod || !accountNumber || !amount) {
+            alert("Please fill in all fields.");
+            return false;
+        }
+
+        // Simulate payment processing
+        alert("Processing payment of K " + amount + " via " + paymentMethod + "...");
+
+        // Hide payment form
+        document.getElementById('paymentForm').classList.add('d-none');
+
+        // Show confirmation message
+        document.getElementById('confirmationMessage').classList.remove('d-none');
+        document.getElementById('selectedMethod').innerText = paymentMethod.replace('-', ' ').toUpperCase();
+        document.getElementById('paymentAmount').innerText = amount;
+    }
+</script>
+{% endblock %}

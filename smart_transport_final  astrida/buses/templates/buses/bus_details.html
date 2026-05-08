@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ bus.name }}</h2>
+    <hr>
+    <p><strong>Route:</strong> {{ bus.route }}</p>
+    <p><strong>Plate Number:</strong> {{ bus.plate_number }}</p>
+    <p><strong>Capacity:</strong> {{ bus.capacity }}</p>
+    <p><strong>Status:</strong> {% if bus.is_active %}Active{% else %}Inactive{% endif %}</p>
+    <a href="{% url 'buses:book_ticket' bus.id %}" class="btn btn-primary">Book Ticket</a>
+    <!-- Example link to the driver dashboard -->
+   
+</div>
+{% endblock %}

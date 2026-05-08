@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Book Ticket</h2>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ bus.name }}</h5>
+            <p class="card-text">
+                <strong>Route:</strong> {{ bus.route }}<br>
+                <strong>Plate Number:</strong> {{ bus.plate_number }}<br>
+                <strong>Capacity:</strong> {{ bus.capacity }}<br>
+                <strong>Status:</strong> {% if bus.is_active %}Active{% else %}Inactive{% endif %}
+            </p>
+        </div>
+    </div>
+    <form method="POST" action="{% url 'buses:book_ticket' bus.id %}">
+        {% csrf_token %}
+        <div class="mt-3">
+            <p>Are you sure you want to book a ticket for this bus?</p>
+            <button type="submit" class="btn btn-success">Confirm Booking</button>
+            <a href="{% url 'buses:bus_list' %}" class="btn btn-secondary">Cancel</a>
+        
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to Smart Transport{% endblock %}
+
+{% block content %}
+<!-- Background Image for the Carousel -->
+<div class="carousel-container">
+    <img src="{% static 'images/transport-banner3.jpeg' %}" class="d-block w-100" alt="Background" style="height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+    
+    <!-- Carousel Section -->
+    <div id="transportCarousel" class="carousel slide text-center" data-bs-ride="carousel" data-bs-interval="3000">
+        <!-- Slides -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/smart-transport-banner1.jpeg' %}" class="d-block w-100" alt="Banner 1">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/smart-transport-banner2.jpeg' %}" class="d-block w-100" alt="Banner 2">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/smart-transport-banner3.jpeg' %}" class="d-block w-100" alt="Banner 3">
+            </div>
+        </div>
+
+        <!-- Overlay Text -->
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center" style="background: rgba(0, 0, 0, 0.5);">
+            <h1 class="display-4 text-white">Welcome to Smart Transport</h1>
+            <p class="lead text-white">We provide a smart solution for efficient and reliable transportation.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'accounts:register' %}" role="button">Get Started</a>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#transportCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#transportCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="row text-center">
+    <div class="col-md-4">
+        <img src="{% static 'images/transport-banner3.jpeg' %}" class="img-fluid rounded-circle mb-3" alt="Easy Booking" style="width: 150px; height: 150px;">
+        <h3>Easy Booking</h3>
+        <p>Book your transport conveniently online, anytime, anywhere.</p>
+    </div>
+    <div class="col-md-4">
+        <img src="{% static 'images/transport-banner1.jpeg' %}" class="img-fluid rounded-circle mb-3" alt="Reliable Drivers" style="width: 150px; height: 150px;">
+        <h3>Reliable Drivers</h3>
+        <p>Our drivers are trained to provide you with safe and comfortable journeys.</p>
+    </div>
+    <div class="col-md-4">
+        <img src="{% static 'images/transport-banner2.jpeg' %}" class="img-fluid rounded-circle mb-3" alt="Affordable Prices" style="width: 150px; height: 150px;">
+        <h3>Affordable Prices</h3>
+        <p>Enjoy competitive pricing for all your travel needs.</p>
+    </div>
+</div>
+
+<!-- Social Media Section -->
+<div class="text-center my-3">
+    <a href="https://www.facebook.com" class="btn btn-outline-primary btn-lg m-2" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://twitter.com" class="btn btn-outline-info btn-lg m-2" target="_blank">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a href="https://www.instagram.com" class="btn btn-outline-danger btn-lg m-2" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.linkedin.com" class="btn btn-outline-secondary btn-lg m-2" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+</div>
+{% endblock %}

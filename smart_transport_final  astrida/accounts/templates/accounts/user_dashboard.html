@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Dashboard</h2>
+    <hr>
+    
+    <!-- Profile Section -->
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Profile Picture -->
+            <div class="text-center">
+                {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle" width="150">
+                {% else %}
+                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="img-fluid rounded-circle" width="150">
+                {% endif %}
+            </div>
+            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+            <p>{{ user.get_role_display }}</p>
+        </div>
+        
+        <div class="col-md-8">
+            <h4>Welcome back, {{ user.first_name }}!</h4>
+            
+            <!-- Total Amount Spent (for customers) -->
+            {% if user.is_customer %}
+            <div>
+                <h5>Total Spent: ${{ total_spent }}</h5>
+            </div>
+            
+            <!-- Upcoming Trips (for customers) -->
+            <div>
+                <h5>Upcoming Trips</h5>
+                <ul>
+                    {% for trip in upcoming_trips %}
+                        <li>{{ trip.trip_date }} - {{ trip.driver.username }} - ${{ trip.fare }}</li>
+                    {% empty %}
+                        <li>No upcoming trips.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            <!-- Completed Trips & Earnings (for drivers) -->
+            {% if user.is_driver %}
+            <div>
+                <h5>Completed Trips: {{ completed_trips }}</h5>
+                <h5>Total Earnings: ${{ total_earnings }}</h5>
+            </div>
+            {% endif %}
+
+            <!-- Payment Methods Section -->
+            <div>
+                <h5>Payment Methods</h5>
+                <ul>
+                    <li>AirtelMoney</li>
+                    <li>MTN</li>
+                    <li>Zamtel</li>
+                    <li>Zanaco</li>
+                    <li>FNB</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

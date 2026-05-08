@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Welcome, {{ user.username }}</h1>
+    <p>Driver Dashboard</p>
+
+    <div class="dashboard">
+      <div class="info-box">
+        <h3>Your Current Route</h3>
+        <p>Route details go here.</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Your Vehicle</h3>
+        <p>Vehicle information and status go here.</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Upcoming Trips</h3>
+        <ul>
+          <li>Trip 1: Destination - Time</li>
+          <li>Trip 2: Destination - Time</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h3>Statistics</h3>
+        <p>Total trips: 10</p>
+        <p>Total earnings: $500</p>
+      </div>
+
+      <div class="action-buttons">
+        <a href="{% url 'drivers:start_trip' %}" class="btn btn-primary">Start New Trip</a>
+        <a href="{% url 'drivers:end_trip' %}" class="btn btn-danger">End Current Trip</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

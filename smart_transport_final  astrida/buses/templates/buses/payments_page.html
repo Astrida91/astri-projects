@@ -1,0 +1,29 @@
+T<!-- buses/payment_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment for Ticket</title>
+</head>
+<body>
+    <h2>Payment for Ticket #{{ payment.ticket.id }}</h2>
+
+    <p><strong>Ticket ID:</strong> {{ payment.ticket.id }}</p>
+    <p><strong>Bus:</strong> {{ payment.ticket.bus.name }} - {{ payment.ticket.bus.route }}</p>
+    <p><strong>Amount to Pay:</strong> ${{ payment.amount }}</p>
+
+    <h3>Payment Form</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render the form fields -->
+        
+        <div>
+            <button type="submit">Complete Payment</button>
+        </div>
+    </form>
+
+    <p><a href="{% url 'buses:ticket_confirmation' ticket_id=payment.ticket.id %}">Back to Ticket Confirmation</a></p>
+
+</body>
+</html>

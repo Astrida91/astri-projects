@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* Profile Picture Upload Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ddd;
+            margin-right: 20px;
+        }
+
+        .upload-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-button:hover {
+            background-color: #0056b3;
+        }
+
+        .card {
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card .status {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .card .button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Flex layout for driver stats */
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .stats .card {
+            flex: 1;
+        }
+
+        /* Bottom section with notifications */
+        .notifications {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .notifications ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notifications ul li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .notifications ul li:last-child {
+            border-bottom: none;
+        }
+
+        .notifications ul li p {
+            margin: 0;
+            color: #555;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Driver Dashboard</h2>
+    <ul>
+        <li><a href="#">Trips</a></li>
+        <li><a href="#">Earnings</a></li>
+        <li><a href="#">Vehicle Status</a></li>
+        <li><a href="#">Notifications</a></li>
+        <li><a href="#">Settings</a></li>
+    </ul>
+    <div class="footer">
+        <p>&copy; 2024 Your Company</p>
+    </div>
+</div>
+
+<div class="main-content">
+    <!-- Profile Section for Picture Upload -->
+    <div class="profile-section">
+        <img id="profileImage" src="https://via.placeholder.com/120" alt="Profile Picture" class="profile-picture">
+        <input type="file" id="profileUpload" style="display: none;" accept="image/*" onchange="previewImage(event)">
+        <button class="upload-button" onclick="document.getElementById('profileUpload').click();">Upload Picture</button>
+    </div>
+
+    <!-- Driver Stats Section -->
+    <div class="stats">
+        <!-- Trip Info Card -->
+        <div class="card">
+            <h3>Current Trip</h3>
+            <p class="value">5.2 km</p>
+            <p class="status">Remaining Distance</p>
+            <button class="button">View Details</button>
+        </div>
+
+        <!-- Earnings Card -->
+        <div class="card">
+            <h3>Total Earnings</h3>
+            <p class="value">ZMW 2,000.50</p> <!-- Changed to Kwacha -->
+            <p class="status">This week</p>
+            <button class="button">View History</button>
+        </div>
+
+        <!-- Vehicle Status Card -->
+        <div class="card">
+            <h3>Vehicle Status</h3>
+            <p class="value">Running Smooth</p>
+            <p class="status">All systems operational</p>
+            <button class="button">Check Maintenance</button>
+        </div>
+    </div>
+
+    <!-- Notifications Section -->
+    <div class="notifications">
+        <h3>Notifications</h3>
+        <ul>
+            <li>
+                <p><strong>Reminder:</strong> Check tire pressure before your next trip.</p>
+            </li>
+            <li>
+                <p><strong>New Trip:</strong> You've received a new ride request. Accept or decline.</p>
+            </li>
+            <li>
+                <p><strong>Safety:</strong> Speed limit exceeded in the last trip. Please drive safely.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // Function to preview the uploaded image
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('profileImage');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Available Buses</h2>
+    <hr>
+    <div class="row">
+        {% for bus in buses %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ bus.name }}</h5>
+                    <p class="card-text">
+                        <strong>Route:</strong> {{ bus.route }}<br>
+                        <strong>Plate Number:</strong> {{ bus.plate_number }}<br>
+                        <strong>Capacity:</strong> {{ bus.capacity }}
+                    </p>
+                    <a href="{% url 'buses:bus_details' bus.id %}" class="btn btn-info">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

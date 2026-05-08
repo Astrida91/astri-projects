@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white text-center">
+            <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
+            <p class="mb-0">Customer Dashboard</p>
+        </div>
+        <div class="card-body">
+            <div class="row align-items-center">
+                <!-- Profile Picture Section -->
+                <div class="col-md-4 text-center">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle border border-3 border-info" width="150">
+                    {% else %}
+                        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="img-fluid rounded-circle border border-3 border-info" width="150">
+                    {% endif %}
+                </div>
+
+                <!-- Customer Details Section -->
+                <div class="col-md-8">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Username:</strong> {{ user.username }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Email:</strong> {{ user.email }}
+                        </li>
+                        {% if user.birth_date %}
+                        <li class="list-group-item">
+                            <strong>Birth Date:</strong> {{ user.birth_date|date:"F j, Y" }}
+                        </li>
+                        {% endif %}
+                        <li class="list-group-item">
+                            <strong>Role:</strong> Customer
+                        </li>
+                    </ul>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-4">
+                        <a href="{% url 'accounts:profile_edit' %}" class="btn btn-outline-info me-2">Edit Profile</a>
+                        <a href="{% url 'accounts:logout' %}" class="btn btn-outline-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Customer-Specific Information -->
+    <div class="mt-4">
+        <h4>Customer Tools</h4>
+        <ul>
+            <li><a href="#">Book a Ticket</a></li>
+            <li><a href="#">View Travel History</a></li>
+            <li><a href="#">Contact Support</a></li>
+        </ul>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="mt-5 text-center">
+        <p class="text-muted">&copy; {{ timezone.now.year }} Smart Transport Management System. All Rights Reserved.</p>
+    </div>
+</div>
+{% endblock %}
